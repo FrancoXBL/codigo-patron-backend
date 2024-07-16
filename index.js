@@ -12,7 +12,7 @@ connectDB();
 
 app.use(express.static("public"));
 app.use(cors());
-app.use(morgan());
+app.use(morgan('combined'));
 app.use(express.json());
 
 app.use("/api", newsRoutes)
