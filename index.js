@@ -2,15 +2,16 @@ import express from "express";
 import { connectDB } from "./db.js";
 import cors from 'cors'
 import morgan from 'morgan'
+import history from 'connect-history-api-fallback'
 
 import newsRoutes from "./src/routes/news.routes.js"
 import matchRoutes from './src/routes/matches.routes.js'
 import userRoutes from './src/routes/admin.routes.js'
 
+
 const app = express();
 connectDB();
 
-app.use(express.static("public"));
 app.use(cors());
 app.use(morgan('combined'));
 app.use(express.json());
@@ -18,6 +19,8 @@ app.use(express.json());
 app.use("/api", newsRoutes)
 app.use("/api", matchRoutes)
 app.use("/api", userRoutes)
+app.use(history())
+app.use(express.static("public"));
 
 app.listen(3000, () => {
   console.log("Server on port 3000");
