@@ -7,13 +7,14 @@ import { SECRET_KEY } from "../../config.js";
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
-
+    
     const userFound = await User.findOne({ username });
 
     if (!userFound)
       return res.status(400).json({ message: "usuario no encontrado" });
 
     const isMatch = await bcrypt.compare(password, userFound.password);
+
     
     if (!isMatch)
       return res.status(400).json({ message: "Password Incorrecto" });
