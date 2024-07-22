@@ -1,17 +1,21 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config(); // Cargar las variables de entorno desde el archivo .env
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {
+        const mongoURI = process.env.MONGO_URI; // Obtener la URI desde las variables de entorno
+        if (!mongoURI) {
+            throw new Error('MONGO_URI is not defined');
+        }
+        await mongoose.connect(mongoURI, {
             useNewUrlParser: true,
             useUnifiedTopology: true
         });
         console.log('DB connected');
     } catch (error) {
-        console.log(error);
+        console.error(error);
         process.exit(1);
     }
 };

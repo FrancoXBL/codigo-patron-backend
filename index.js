@@ -1,13 +1,15 @@
 import express from "express";
-import { connectDB } from "./db.js";
+import connectDB from "./db.js";
 import cors from 'cors'
 import morgan from 'morgan'
 import history from 'connect-history-api-fallback'
+import dotenv from 'dotenv';
 
 import newsRoutes from "./src/routes/news.routes.js"
 import matchRoutes from './src/routes/matches.routes.js'
 import userRoutes from './src/routes/admin.routes.js'
 
+dotenv.config();
 
 const app = express();
 connectDB();
@@ -22,6 +24,7 @@ app.use("/api", userRoutes)
 app.use(history())
 app.use(express.static("public"));
 
-app.listen(3000, () => {
-  console.log("Server on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
