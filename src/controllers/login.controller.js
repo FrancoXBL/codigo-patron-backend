@@ -1,7 +1,8 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { SECRET_KEY } from "../../config.js";
+
+const SECRET_KEY = process.env.SECRET_KEY
 
 // Iniciar sesión
 const login = async (req, res) => {
