@@ -1,10 +1,19 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-export const connectDB = async () => {
+dotenv.config();
+
+const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb+srv://codigo-patron:ryn1star@cluster0.gba40lv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
-        console.log('db connected')
+        await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log('DB connected');
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        process.exit(1);
     }
-}
+};
+
+export default connectDB;
