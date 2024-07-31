@@ -15,7 +15,7 @@ const app = express();
 connectDB();
 
 const whiteList = [
-  "https://codigo-patron.up.railway.app/",
+  "https://codigo-patron.up.railway.app",
   "https://codigopatron.com.ar",
 ];
 app.use(
