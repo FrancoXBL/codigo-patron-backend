@@ -13,7 +13,7 @@ const getMatches = async (req, res) => {
 
 const getNextMatch = async (req, res) => {
   try {
-    const match = await nextMatch.find().sort({ _id: -1 }).limit(1);
+    const match = await nextMatch.find().sort({ _id: -1 }).limit(3);
     res.json(match);
   } catch (error) {
     res.status(500).json({ message: error.message });

@@ -15,6 +15,7 @@ const app = express();
 connectDB();
 
 const whiteList = [
+  "http://localhost:5174",
   "https://codigo-patron.up.railway.app",
   "https://codigopatron.com.ar",
 ];
