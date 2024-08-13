@@ -30,8 +30,7 @@ const addNextMatch = async (req, res) => {
       venue,
       city,
       country,
-      league,
-      season
+      league
     } = req.body;
 
     const newMatch = new nextMatch({
@@ -93,7 +92,8 @@ const addMatch = async (req, res) => {
       season,
       homeGoalDetails,
       awayGoalDetails,
-      referee
+      referee,
+      resume
     } = req.body;
 
     const newMatch = new Match({
@@ -110,7 +110,8 @@ const addMatch = async (req, res) => {
       season,
       homeGoalDetails,
       awayGoalDetails,
-      referee
+      referee,
+      resume
     });
     const savedMatch = await newMatch.save();
     res.status(201).json(savedMatch);

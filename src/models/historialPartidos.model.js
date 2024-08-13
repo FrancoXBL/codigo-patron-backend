@@ -5,8 +5,8 @@ const goalDetailSchema = new mongoose.Schema({
   minute: { type: String, required: true },
   type: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 const matchSchema = new mongoose.Schema({
@@ -23,8 +23,8 @@ const matchSchema = new mongoose.Schema({
   season: { type: String, required: true },
   homeGoalDetails: [goalDetailSchema],
   awayGoalDetails: [goalDetailSchema],
-  referee: { type: String, required: true }
+  referee: { type: String, required: true },
+  resume: { type: String, required: true },
 });
 
-export default mongoose.model('Match', matchSchema);
-
+export default mongoose.model("Match", matchSchema);

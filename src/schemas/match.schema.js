@@ -20,5 +20,6 @@ export const matchSchema = z.object({
   season: z.string().nonempty("Season is required"),
   homeGoalDetails: z.array(goalDetailSchema),
   awayGoalDetails: z.array(goalDetailSchema),
-  referee: z.string().nonempty("Referee is required")
+  referee: z.string().nonempty("Referee is required"),
+  resume: z.string().nonempty("Agregar el resumen")
 });
