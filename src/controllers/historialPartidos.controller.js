@@ -30,7 +30,8 @@ const addNextMatch = async (req, res) => {
       venue,
       city,
       country,
-      league
+      league,
+      season
     } = req.body;
 
     const newMatch = new nextMatch({
