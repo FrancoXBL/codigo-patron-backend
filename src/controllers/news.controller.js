@@ -2,36 +2,23 @@ import News from "../models/news.model.js";
 import date from "../../data/date.js";
 
 // Obtener noticias con paginación y filtro opcional por título
-const getNews = async (req, res) => {
-  try {
-    const search = req.query.search || '';
-    const page = parseInt(req.query.page, 10) || 1;
-    const limit = 10;
-    const skip = (page - 1) * limit;
+const getNews = async (req, res) => { try { // Obtener el texto de búsqueda y el número de página de los parámetros de consulta const search = req.query.search || ''; const page = parseInt(req.query.page, 10) || 1; // Página actual, por defecto 1 const limit = 10; // Número de noticias por página
 
-    const filter = search
-      ? { title: { $regex: search, $options: 'i' } }
-      : {};
-
-    const [news, totalCount] = await Promise.all([
-      News.find(filter)
-        .sort({ date: -1 })
-        .skip(skip)
-        .limit(limit),
-      News.countDocuments(filter)
-    ]);
-
-    const totalPages = Math.ceil(totalCount / limit);
-
-    res.json({
-      news,
-      totalPages,
-      currentPage: page
-    });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+  // Calcular el número de documentos a saltar
+  const skip = (page - 1) * limit;
+  
+  // Crear un objeto de filtro
+  const filter = search
+    ? { title: { $regex: search, $options: 'i' } } // Filtro si hay término de búsqueda
+    : {}; // Filtro vacío si no hay término de búsqueda
+  
+  // Buscar las noticias con el filtro, ordenar por fecha, aplicar paginación
+  const news = await News.find(filter)
+    .sort({ date: -1 }) // Ordenar por fecha descendente
+    .skip(skip) // Saltar los documentos de las páginas anteriores
+    .limit(limit); // Limitar al número de noticias por página
+  res.json(news);
+  } catch (error) { res.status(500).json({ message: error.message }); } };
 
 // Obtener solo las noticias de hoy
 const getNewsToday = async (req, res) => {
