@@ -12,6 +12,12 @@ router.post(
 );
 
 router.post(
+  "/auth/callback/credentials",
+  validateSchema(authSchema),
+  authControllers.login
+);
+
+router.post(
   "/auth/register",
   validateSchema(authSchema),
   authControllers.register
