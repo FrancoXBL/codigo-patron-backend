@@ -1,5 +1,4 @@
 import News from "../models/news.model.js";
-import date from "../../data/date.js";
 
 const getNews = async (req, res) => {
   try {
