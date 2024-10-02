@@ -1,26 +1,9 @@
 import News from "../models/news.model.js";
-import date from "../../data/date.js";
 
 const getNews = async (req, res) => {
   try {
-    // Obtener el texto de búsqueda y el número de página de los parámetros de consulta
-    const search = req.query.search || '';
-    const page = parseInt(req.query.page, 10) || 1; // Página actual, por defecto 1
-    const limit = 10; // Número de noticias por página
-
-    // Calcular el número de documentos a saltar
-    const skip = (page - 1) * limit;
-
-    // Crear un objeto de filtro
-    const filter = search
-      ? { title: { $regex: search, $options: 'i' } } // Filtro si hay término de búsqueda
-      : {}; // Filtro vacío si no hay término de búsqueda
-
-    // Buscar las noticias con el filtro, ordenar por fecha, aplicar paginación
-    const news = await News.find(filter)
-      .sort({ date: -1 }) // Ordenar por fecha descendente
-      .skip(skip) // Saltar los documentos de las páginas anteriores
-      .limit(limit); // Limitar al número de noticias por página
+    const news = await News.find()
+      .limit(25); // Limitar al número de noticias por página
 
     res.json(news);
   } catch (error) {

@@ -20,12 +20,12 @@ const login = async (req, res) => {
     if (!isMatch)
       return res.status(400).json({ message: "Password Incorrecto" });
     
-    jwt.sign({ id: userFound._id }, SECRET_KEY, (err, token) => {
+    jwt.sign({ id: userFound._id, username: userFound.username }, SECRET_KEY, (err, token) => {
       if (err) {
         console.log(err);
         return res.status(500).json({ message: "Error al generar token" });
       }
-      res.cookie("token", token);
+      res.cookie("myToken", token);
       res.json({ message: "Sesion iniciada", token });
     });
   } catch (error) {
