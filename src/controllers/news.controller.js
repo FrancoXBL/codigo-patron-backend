@@ -2,7 +2,7 @@ import News from "../models/news.model.js";
 
 const getNews = async (req, res) => {
   try {
-    const news = await News.find(filter)
+    const news = await News.find()
       .sort({ date: -1 })
       .limit(50); // Limitar al número de noticias por página
 
