@@ -16,7 +16,7 @@ router.delete("/news/:id", newsControllers.deleteNews);
 
 router.get("/news/today/:today", newsControllers.getNewsToday);
 
-router.get("/noticias/:id", newsControllers.getNewsById);
+router.get("/news/:id", newsControllers.getNewsById);
 
 router.put("/news/:id", validateSchema(newsSchema), newsControllers.updateNews);
 

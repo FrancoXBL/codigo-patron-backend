@@ -28,7 +28,6 @@ const getNewsById = async (req, res) => {
   try {
     const news = await News.findById(req.params.id);
 
-    console.log(req.params.id)
     if (!news) {
       return res.status(404).json({ message: "Noticia no encontrada" });
     }
