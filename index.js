@@ -41,13 +41,13 @@ app.use("/api", userRoutes);
 // Maneja el historial del enrutador para aplicaciones de una sola página
 app.use(history());
 
-// // Configuración de archivos estáticos
-// app.use(express.static("public"));
+// Configuración de archivos estáticos
+app.use(express.static("public"));
 
-// // Ruta principal para servir el frontend
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "public", "index.html"));
-// });
+// Ruta principal para servir el frontend
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 const PORT = process.env.PORT || 3500;
 app.listen(PORT, () => {
