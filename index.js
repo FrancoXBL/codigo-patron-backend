@@ -18,6 +18,7 @@ const whiteList = [
   "http://localhost:5174",
   "https://codigo-patron.up.railway.app",
   "https://codigopatron.com.ar",
+  "https://wistful-brass-production.up.railway.app"
 ];
 
 // Configuración de CORS

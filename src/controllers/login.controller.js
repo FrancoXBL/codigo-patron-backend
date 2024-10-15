@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const SECRET_KEY = process.env.SECRET_KEY
+const SECRET_TOKEN = process.env.SECRET_TOKEN
 
 // Iniciar sesión
 const login = async (req, res) => {
@@ -25,7 +26,7 @@ const login = async (req, res) => {
         console.log(err);
         return res.status(500).json({ message: "Error al generar token" });
       }
-      res.cookie("myToken", token);
+      res.cookie(SECRET_TOKEN, token);
       res.json({ message: "Sesion iniciada", token });
     });
   } catch (error) {
